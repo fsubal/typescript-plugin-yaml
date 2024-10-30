@@ -158,7 +158,7 @@ function createDts(filepath: string, logger: ts.server.Logger) {
     if (Object.prototype.toString.call(doc) === '[object Object]') {
       dts += Object.keys(doc)
         .filter(key => VALID_VARIABLE_NAME_REGEX.test(key))
-        .map((key) => `export let ${key} = ${JSON.stringify(doc[key])}`)
+        .map((key) => `export let ${key} = ${JSON.stringify(doc[key])} as const`)
         .join('\n');
     } 
 
