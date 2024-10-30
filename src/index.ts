@@ -149,7 +149,7 @@ function createDts(filepath: string, logger: ts.server.Logger) {
   try {
     const content = fs.readFileSync(filepath, 'utf8');
     if (!content.trim().length) {
-      return `export { }`;
+      return `export { } as const`;
     }
 
     const doc = jsYaml.load(content) as any;
@@ -162,7 +162,7 @@ function createDts(filepath: string, logger: ts.server.Logger) {
         .join('\n');
     } 
 
-    dts += `\nexport default ${JSON.stringify(doc)}`;
+    dts += `\nexport default ${JSON.stringify(doc)} as const`;
 
     return dts;
   } catch (err) {
